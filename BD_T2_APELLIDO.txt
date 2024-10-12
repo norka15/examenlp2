@@ -1,0 +1,42 @@
+create database BD_T2_APELLIDO;
+use BD_T2_APELLIDO;
+
+-------------------------
+create table categoria
+(
+id_cate int primary key,
+descripcion varchar(100),
+frecuencia_compra int
+);
+
+create table producto (
+    id_prod int AUTO_INCREMENT primary key,
+    nom_prod varchar(100),
+    id_cate int,
+    stock_actual int,
+    FOREIGN KEY (id_cate) REFERENCES categoria(id_cate)
+);
+
+create table inventario (
+    nro_inventario int AUTO_INCREMENT primary key,
+    fecha date,
+    id_prod int,
+    costo_ingreso smallint,
+    FOREIGN KEY (id_prod) REFERENCES producto(id_prod)
+);
+
+-------------------------
+INSERT INTO categoria (id_cate, descripcion, frecuencia_compra) VALUES 
+(1, 'Ropa', 20),
+(2, 'Electrodomesticos', 15),
+(3, 'Alimentos', 7);
+
+INSERT INTO producto (id_prod, nom_prod, id_cate, stock_actual) VALUES
+(1, 'Pantalon', 1, 50),
+(2, 'Refrigeradora', 2, 100),
+(3, 'Fideos', 3, 200);
+
+INSERT INTO inventario (fecha, id_prod, costo_ingreso) VALUES
+('2024-08-01', 1, 20.00),
+('2024-08-02', 2, 1000.00),
+('2024-08-03', 3, 3.50);
